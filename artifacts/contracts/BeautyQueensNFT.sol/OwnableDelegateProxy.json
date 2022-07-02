@@ -1,0 +1,10 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "OwnableDelegateProxy",
+  "sourceName": "contracts/BeautyQueensNFT.sol",
+  "abi": [],
+  "bytecode": "0x6080604052348015600f57600080fd5b50603f80601d6000396000f3fe6080604052600080fdfea2646970667358221220d1e3716042860bf2b059d001e5fe72f3116e07ce47f22a830475da781d62857864736f6c63430008090033",
+  "deployedBytecode": "0x6080604052600080fdfea2646970667358221220d1e3716042860bf2b059d001e5fe72f3116e07ce47f22a830475da781d62857864736f6c63430008090033",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}
