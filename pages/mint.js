@@ -258,7 +258,7 @@ export default function Mint() {
             alt=""/>
           <div className="flex flex-col items-center justify-center h-full w-full px-2 md:px-10">
             <div className="relative z-1 md:max-w-3xl w-full  filter backdrop-blur-sm py-4 rounded-md px-2 md:px-10 flex flex-col items-center bg-black">
-              <h1 style={{fontWeight:"900"}} className="mobileHeading caviar text-7xl uppercase md:text-4xl text-[#f447a2] mt-3 tracking-widest">
+              <h1 className="fontdesign mobileHeading text-7xl uppercase md:text-4xl text-[#f447a2] mt-3 tracking-widest">
                 {paused ? 'Paused' : isPreSale ? 'Pre-Sale' : isPublicSale ? "Public Sale" :"Loading..."}
               </h1>
               <h3 className="text-sm text-[#f447a2] tracking-widest">
@@ -330,7 +330,7 @@ export default function Mint() {
                     </button>
                   </div>
 
-                  <p className=" caviar text-sm text-[#f447a2] tracking-widest mt-3">
+                  <p className=" fontdesign text-lg uppercase text-[#f447a2] tracking-widest mt-3">
                     Max Mint Amount: {maxMintAmount}
                   </p>
 

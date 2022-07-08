@@ -15,6 +15,9 @@
   --clr-selection-bg: #cb3d92;
   --clr-selection-text: #f4f0f0;
   --clr-background: #06070a;
+  font-family: 'Caviar Dreams';
+  text-transform: uppercase;
+  
 
   /* Customize Wallet Modal */
   /* CUSTOMIZE THE COLOR  PALLETTE */
@@ -68,30 +71,41 @@ html {
   background: var(--clr-selection-bg);
   color: var(--clr-selection-text);
 }
-.bgColorGradiant{
+
+.bgColorGradiant {
   background-color: transparent;
   background-image: linear-gradient(180deg, #975d7abd 0%, #B98BC6B3 100%);
 }
-.hiddenGif{
+
+.hiddenGif {
   object-fit: contain;
   width: 240px !important;
   height: auto;
 }
-.caviar{
-  font-family: "Caviar Dreams";
-  font-weight: 900 !important;
-}
-@font-face {
+
+
+ /* @font-face {
   font-family: 'Caviar Dreams';
   font-weight: 700;
-  src: local('Caviar Dreams'), url(../fonts/CaviarDreams_Bold.woff) format('woff');
+  src: local('Caviar Dreams'), url(../fonts/CaviarDreams_Bold.ttf) format('ttf');
+}  */
+
+@font-face {
+  src: url('../fonts/CaviarDreams_Bold.ttf');
+  font-family: 'Caviar Dreams';
+}
+.fontdesign {
+  font-family: 'Caviar Dreams';
+  /* font-weight: 900px; */
+  /* font-weight: bold; */
 }
 
 @media only screen and (max-width: 600px) {
-  .mobileHeading{
+  .mobileHeading {
     font-size: 22px;
   }
-  .mobileImg{
+
+  .mobileImg {
     width: 180px;
     height: 200px;
   }
