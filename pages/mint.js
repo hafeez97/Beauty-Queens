@@ -7,7 +7,6 @@ const keccak256 = require('keccak256')
 const whitelist = require('../scripts/whitelist')
 import { createAlchemyWeb3 } from '@alch/alchemy-web3'
 
-
 import {
   getTotalMinted,
   getMaxSupply,
@@ -16,7 +15,6 @@ import {
   isPreSaleState,
   getPrice,
 } from '../utils/interact'
-
 
 export default function Mint() {
   const web3 = createAlchemyWeb3(process.env.NEXT_PUBLIC_ALCHEMY_RPC_URL)
@@ -38,6 +36,7 @@ export default function Mint() {
 
 
 //Minting functionality
+
   const contract = require('../artifacts/contracts/BeautyQueensNFT.sol/TestBeautyQueensNFT.json')
   const nftContract = new web3.eth.Contract(contract.abi, config.contractAddress)
   // Calculate merkle root from the whitelist array
@@ -152,12 +151,12 @@ export default function Mint() {
       }
     }
   }
+
   //mint stuff copied end
 
   useEffect(() => {
     setOnboard(initOnboard)
   }, [])
-
 
   useEffect(() => {
     if (!connectedWallets.length) return
@@ -199,7 +198,6 @@ export default function Mint() {
     onit()
   }, [])
 
-
   useEffect(() => {
     const init = async () => {
       setMaxSupply(await getMaxSupply())
@@ -235,7 +233,6 @@ export default function Mint() {
       success,
       message: status
     })
-
     setIsMinting(false)
   }
   const publicMintHandler = async () => {
@@ -256,16 +253,15 @@ export default function Mint() {
 
         <div className="relative w-full h-full flex flex-col items-center justify-center">
           <img
-            src="/images/purplebg.jpg"
+            src="/images/backgroundImg.jpg"
             className="animate-pulse-slow absolute inset-auto block w-full min-h-screen object-cover"
             alt=""/>
-
           <div className="flex flex-col items-center justify-center h-full w-full px-2 md:px-10">
-            <div className="relative z-1 md:max-w-3xl w-full  filter backdrop-blur-sm py-4 rounded-md px-2 md:px-10 flex flex-col items-center bgColorGradiant">
-              <h1 className="mobileHeading text-7xl uppercase font-bold md:text-4xl bg-gradient-to-br  from-[#FFD700] to-white bg-clip-text text-transparent mt-3">
-                {paused ? 'Paused' : isPreSale ? 'Pre-Sale' : 'Public Sale'}
+            <div className="relative z-1 md:max-w-3xl w-full  filter backdrop-blur-sm py-4 rounded-md px-2 md:px-10 flex flex-col items-center bg-black">
+              <h1 style={{fontWeight:"900"}} className="mobileHeading caviar text-7xl uppercase md:text-4xl text-[#f447a2] mt-3 tracking-widest">
+                {paused ? 'Paused' : isPreSale ? 'Pre-Sale' : isPublicSale ? "Public Sale" :"Loading..."}
               </h1>
-              <h3 className="text-sm text-pink-200 tracking-widest">
+              <h3 className="text-sm text-[#f447a2] tracking-widest">
                 {wallet?.accounts[0]?.address
                   ? wallet?.accounts[0]?.address.slice(0, 8) +
                   '...' +
@@ -273,18 +269,17 @@ export default function Mint() {
                   : ''}
               </h3>
 
-              <div className="flex flex-col md:flex-row md:space-x-14 w-full mt-10 md:mt-14">
+              <div className=" caviar flex flex-col md:flex-row md:space-x-14 w-full mt-10 md:mt-14">
                 <div className="relative w-full">
-                  <div className="z-10 absolute top-2 left-2 opacity-80 filter backdrop-blur-lg text-base px-4 py-2 bg-black border border-brand-white rounded-md flex items-center justify-center text-white font-semibold">
+                  <div className="z-10 absolute top-2 left-2 opacity-80 filter backdrop-blur-lg text-base px-4 py-2 bg-black border border-brand-white rounded-md flex items-center justify-center text-[#f447a2] font-semibold">
                     <p>
-                      <span className="text-[#ff6900]">{totalMinted}</span> /{' '}
+                      <span className="text-[#f447a2]">{totalMinted}</span> /{' '}
                       {maxSupply}
                     </p>
                   </div>
-
                   <img
-                    src="/images/cartgif.gif"
-                    className="mobileImg mx-auto object-cover w-full sm:h-[280px] md:w-[250px]  rounded-md"
+                    src="/images/hiddengif.gif"
+                    className="hiddenGif mobileImg mx-auto object-cover w-full sm:h-[280px] md:w-[250px]  rounded-md"
                     alt=""/>
                 </div>
 
@@ -310,7 +305,7 @@ export default function Mint() {
                       </svg>
                     </button>
 
-                    <p className="flex items-center justify-center flex-1 grow text-center font-bold text-[#FFD700] text-3xl md:text-4xl">
+                    <p className="caviar flex items-center justify-center flex-1 grow text-center font-bold text-[#f447a2] text-3xl md:text-4xl">
                       {mintAmount}
                     </p>
 
@@ -335,15 +330,15 @@ export default function Mint() {
                     </button>
                   </div>
 
-                  <p className="text-sm text-pink-200 tracking-widest mt-3">
+                  <p className=" caviar text-sm text-[#f447a2] tracking-widest mt-3">
                     Max Mint Amount: {maxMintAmount}
                   </p>
 
-                  <div className=" border-t border-b py-4 mt-16 w-full">
-                    <div className="w-full text-xl font-semibold flex items-center justify-between text-brand-yellow">
+                  <div className="caviar border-t border-b py-4 mt-16 w-full">
+                    <div className="w-full text-xl font-semibold flex items-center justify-between  text-[#f447a2]">
                       <p>Total</p>
 
-                      <div className="flex items-center space-x-3 font-semibold">
+                      <div className="flex items-center space-x-3 font-bold">
                         <p>
                           {Number.parseFloat(price * mintAmount).toFixed(
                             2
@@ -359,11 +354,12 @@ export default function Mint() {
                   {/* Mint Button && Connect Wallet Button */}
                   {wallet ? (
                     <button
+
                       className={` ${
                         paused || isMinting
-                          ? 'bg-gray-900 cursor-not-allowed'
-                          : 'bg-gradient-to-br from-[#B98BC6] to-[#fa82c8] shadow-lg hover:shadow-[#faedf0] hover:transition hover:ease-out hover:delay-75 font-bold'
-                      } font-monospace mt-12 w-full px-6 py-3 rounded-3xl text-2xl  text-white  mx-4 tracking-wide uppercase font-bold`}
+                          ? 'cursor-not-allowed'
+                          : 'caviar mt-8 w-full text-[20px] font-bold text-[#f447a2] hover:shadow-[#fada91]  tracking-wide uppercase'
+                      } caviar mt-8 w-full text-[20px] font-bold text-[#f447a2] hover:shadow-[#fada91]  tracking-wide uppercase`}
                       disabled={paused || isMinting}
                       onClick={isPreSale ? presaleMintHandler : publicMintHandler}
                     >
@@ -371,15 +367,14 @@ export default function Mint() {
                     </button>
                   ) : (
                     <button
-                      className="mt-12 w-full bg-gradient-to-br from-[#B98BC6] to-[#fa82c8] shadow-lg hover:shadow-[#faedf0] hover:transition hover:ease-out hover:delay-75 font-bold  font-bold px-6 py-3 rounded-3xl text-2xl text-white hover:shadow-[#fada91] mx-4 tracking-wide uppercase"
+                      className="caviar  mt-8 w-full text-[30px] font-bold text-[#f447a2] hover:shadow-[#fada91]  tracking-wide uppercase"
                       onClick={() => connect()}
                     >
-                      Connect Wallet
+                      CONNECT WALLET
                     </button>
                   )}
                 </div>
               </div>
-
               {/* Status */}
               {status && (
                 <div
@@ -396,7 +391,6 @@ export default function Mint() {
           </div>
         </div>
       </div>
-
     </>
   )
 }

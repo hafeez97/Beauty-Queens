@@ -2,11 +2,13 @@
   "name": "nft-minting-dapp",
   "version": "0.1.0",
   "private": true,
+  "homepage": "beautyqueensmint.metaperficient.com",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "export" : "next export"
   },
   "dependencies": {
     "@alch/alchemy-web3": "^1.2.4",
